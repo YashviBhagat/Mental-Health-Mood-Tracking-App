@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [loginP, setLogin] = useState([]);
+  const [user, setLogin] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -111,7 +111,7 @@ function App() {
         />
         <button onClick={addLogin}>Submit</button>
       </div>
-      {loginP.map((login) => (
+      {user.map((login) => (
         <div key={login.id}> 
           <p>Name: {login.name}</p>
           <p>Password: {login.password}</p>
