@@ -3,34 +3,22 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [user, setLogin] = useState([]);
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [newName, setnewName] = useState("");
+  const [responseData, setResponseData] = useState(null);
 
   useEffect(() => {
-    fetchLogin();
+    
   }, []);
 
-  const fetchLogin = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/loginP/");
-      const data = await response.json();
-      setLogin(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const addLogin = async () => {
+  const login = async () => {
     const loginData = {
-      name,
+      username,
       password,
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/loginP/create/", {
+      const response = await fetch("http://127.0.0.1:8000/api/user/login/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -39,60 +27,18 @@ function App() {
       });
 
       const data = await response.json();
-      setLogin((prev) => [...prev, data]);
+      
+
+      if (response.ok) {
+        setResponseData(data.message);
+        // TODO: navigate to home page
+      } else {
+        setResponseData(data.error);
+      }
 
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const updateName = async (pk, password) => {
-    const loginData = {
-      name: newName,
-      password,
-    };
-
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/loginP/${pk}/`, {
-        method: "PUT",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const data = await response.json();
-      setLogin((prev) => 
-        prev.map((login) => {
-          if (login.id === pk){
-            return data;
-          }else{
-            return login;
-          }
-        }
-          
-        )
-      );
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const deleteName = async (pk) => {
-    try{
-    const response = await fetch(`http://127.0.0.1:8000/api/loginP/${pk}/`, {
-        method: "DELETE",
-       
-      });
-
-     
-      setLogin((prev) => prev.filter((login) =>login.id !== pk));
-    } catch(err){
-      console.log(err);
-    }
-
-
   };
 
   return (
@@ -102,30 +48,21 @@ function App() {
         <input 
           type='text' 
           placeholder='Enter name' 
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input 
           type='text' 
           placeholder='Enter Password' 
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={addLogin}>Submit</button>
-      </div>
-      {user.map((login) => (
-        <div key={login.id}> 
-          <p>Name: {login.name}</p>
-          <p>Password: {login.password}</p>
-          <input 
-            type="text" 
-            placeholder='Update Name' 
-            onChange={(e) => setnewName(e.target.value)}
-          />
-          <button onClick={() => updateName(login.id, login.password)}>
-            Change Name
-          </button>
-          <button onClick={() => deleteName(login.id)}>Delete</button>
+        <button onClick={login}>Login</button>
+
+        {responseData && ( 
+        <div style={{ marginTop: '20px' }}>
+          {<p>{responseData}</p>}
         </div>
-      ))}
+      )}
+      </div>
     </>
   );
 }

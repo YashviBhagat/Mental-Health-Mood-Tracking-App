@@ -9,11 +9,10 @@ class User(models.Model):
     dateOfBirth = models.CharField(max_length=50)
     gender = models.CharField(max_length=50)
     physicalActivityLevel = models.CharField(max_length=50)
-    lastLogin = models.CharField(max_length=50)
-
+    last_login = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return str(self.__dict__)
     
 class Login(models.Model):
     username = models.CharField(max_length=50)
