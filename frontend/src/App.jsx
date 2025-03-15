@@ -47,14 +47,16 @@ function App() {
       <div>
         <input 
           type='text' 
-          placeholder='Enter name' 
+          placeholder='Enter username' 
           onChange={(e) => setUsername(e.target.value)}
         />
+        <br></br>
         <input 
-          type='text' 
+          type='password' 
           placeholder='Enter Password' 
           onChange={(e) => setPassword(e.target.value)}
         />
+        <br></br><br></br>
         <button onClick={login}>Login</button>
 
         {responseData && ( 
