@@ -1,3 +1,4 @@
+
 from django.db import models
 
 class Signup(models.Model):
@@ -20,5 +21,16 @@ class Signup(models.Model):
     wellbeing_goal = models.CharField(max_length=100, blank=True, null=True)
     feelings = models.JSONField(default=list, blank=True)
 
+
     def __str__(self):
         return self.username
+    
+class MoodRating(models.Model):
+    user = models.ForeignKey(Signup, on_delete=models.CASCADE)  # ✅ Fixed here
+    mood = models.CharField(max_length=50)
+    rating = models.IntegerField()  # Rating from 1 to 5
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.mood}: {self.rating}"
+
