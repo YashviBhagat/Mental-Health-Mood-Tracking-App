@@ -1,22 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [userType, setUserType] = useState(""); // 'user' or 'therapist'
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    dateOfBirth: "",
-    gender: "",
-    
-    licenceNumber: "",
-    consultationType: "",
-    aboutMe: "",
-    wellbeingGoal: "",
-    feelings: [],
-  });
+    const navigate = useNavigate();
+    const [userType, setUserType] = useState(""); // 'user' or 'therapist'
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        password: "",
+        dateOfBirth: "",
+        gender: "",
+        
+        licenceNumber: "",
+        consultationType: "",
+        aboutMe: "",
+        wellbeingGoal: "",
+        feelings: [],
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,32 +38,26 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Log data before sending request
-    console.log("Sending Data:", JSON.stringify({ ...formData, userType }));
-
     try {
       const response = await fetch("http://127.0.0.1:8000/api/signupP/create/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, userType }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      const data = await response.json(); // Try to parse response JSON
+      const data = await response.json();
 
       if (response.ok) {
-        alert("Signup successful!");
-        console.log("Success:", data);
+        alert("Signup successful! Redirecting to Signin...");
+        navigate("/"); // Redirect to Sign-in page
       } else {
         alert("Signup failed. Please check your inputs.");
-        console.error("Error Response:", data);
       }
     } catch (error) {
-      alert("Something went wrong. Check console for details.");
-      console.error("Network Error:", error);
+      alert("Something went wrong. Try again.");
     }
   };
+
 
   return (
     <div>

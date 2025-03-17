@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_signup, create_signup, signup_detail, signin_user, submit_mood_rating,get_user_mood_ratings,update_mood_rating # Updated function names
+from .views import get_signup, create_signup, get_user_streaks, signup_detail, signin_user, submit_mood_rating,get_user_mood_ratings,update_mood_rating # Updated function names
 
 urlpatterns = [
     path('signupP/', get_signup, name='get_signup'),  
@@ -10,6 +10,7 @@ urlpatterns = [
     path('submit-mood/', submit_mood_rating, name='submit_mood_rating'),
     path('get-user-moods/<int:user_id>/', get_user_mood_ratings, name='get_user_mood_ratings'),
     path('update-mood/<int:rating_id>/', update_mood_rating, name='update_mood_rating'),
+    path('get-user-streaks/<int:user_id>/', get_user_streaks, name='get_user_streaks'),
 
 
 ]

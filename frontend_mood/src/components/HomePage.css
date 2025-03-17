@@ -141,4 +141,41 @@
     padding: 10px;
     border-radius: 5px;
   }
+
+  .streaks {
+    background-color: #d8ebe4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .streak-number {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .week-streak {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .day {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .day.completed {
+    background-color: #8473d9;
+    color: white;
+  }
+  
   

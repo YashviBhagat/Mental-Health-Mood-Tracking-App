@@ -5,12 +5,15 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const userId = 1; // Replace with actual user ID after login implementation
+  const userId = 1; // Replace with actual user ID after login
   const [moodRatings, setMoodRatings] = useState({});
   const [existingRatings, setExistingRatings] = useState({});
+  const [streak, setStreak] = useState({ current: 0, longest: 0 });
+  const [weekDays, setWeekDays] = useState({});
 
   useEffect(() => {
     fetchMoodRatings();
+    fetchStreaks();
   }, []);
 
   // Fetch mood ratings from the backend
@@ -33,6 +36,29 @@ const HomePage = () => {
     }
   };
 
+  // Fetch user streak data
+  const fetchStreaks = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/get-user-streaks/${userId}/`);
+      const data = await response.json();
+
+      setStreak({ current: data.current_streak, longest: data.longest_streak });
+
+      // Track which days in the last 7 days have submissions
+      const today = new Date();
+      const daysMap = {};
+      for (let i = 6; i >= 0; i--) {
+        const day = new Date();
+        day.setDate(today.getDate() - i);
+        const dayName = day.toLocaleString("en-US", { weekday: "short" });
+        daysMap[dayName] = data.last_submission_date === day.toISOString().split("T")[0];
+      }
+      setWeekDays(daysMap);
+    } catch (error) {
+      console.error("Error fetching streaks:", error);
+    }
+  };
+
   // Handle rating selection
   const handleRatingChange = (mood, rating) => {
     setMoodRatings((prev) => ({
@@ -41,7 +67,7 @@ const HomePage = () => {
     }));
   };
 
-  // Submit or update mood ratings
+  // Submit or update mood ratings and update streak
   const submitMoodRatings = async () => {
     try {
       for (let mood in moodRatings) {
@@ -63,6 +89,7 @@ const HomePage = () => {
       }
       alert("Mood ratings updated!");
       fetchMoodRatings(); // Refresh the data
+      fetchStreaks(); // Update streak after submission
     } catch (error) {
       console.error("Error submitting mood ratings:", error);
     }
@@ -92,6 +119,17 @@ const HomePage = () => {
             <FaSignOutAlt /> LOG OUT
           </button>
         </header>
+
+        {/* Streaks Section */}
+        <section className="streaks">
+          <h2>STREAKS <span className="streak-number">{streak.current}</span></h2>
+          <p>Longest streak: {streak.longest}</p>
+          <div className="week-streak">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <span key={day} className={weekDays[day] ? "day completed" : "day"}>{day.charAt(0)}</span>
+            ))}
+          </div>
+        </section>
 
         {/* Mood Selection */}
         <section className="mood-selection">

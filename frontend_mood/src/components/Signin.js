@@ -9,7 +9,7 @@ const Signin = () => {
 
   const handleSignin = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch("http://127.0.0.1:8000/api/signin/", {
         method: "POST",
@@ -22,16 +22,16 @@ const Signin = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Signin successful!");
-        navigate("/home"); // Redirect to the home page
+        localStorage.setItem("userId", data.user_id); // Store user ID
+        localStorage.setItem("username", data.username); // Store username
+        navigate("/home");
       } else {
         setError("Incorrect username or password");
       }
     } catch (error) {
-      setError("Something went wrong. Please try again.");
+      setError("Something went wrong. Try again.");
     }
   };
-
   return (
     <div>
       <h2>Signin</h2>
