@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Login
+from .models import Signup
 
-class LoginSerializer(serializers.ModelSerializer):
+class SignupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Login
+        model = Signup
         fields = '__all__'

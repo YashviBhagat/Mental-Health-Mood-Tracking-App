@@ -1,0 +1,144 @@
+/* HomePage.css */
+
+.homepage-container {
+    display: flex;
+    height: 100vh;
+    font-family: "Arial", sans-serif;
+    background-color: #f3f3f3;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #f8f1e5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .tagline {
+    font-size: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .sidebar nav ul li svg {
+    margin-right: 10px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Mood Selection */
+  .mood-selection, .mood-prediction, .streaks, .quote {
+    background: white;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+  }
+  
+  .mood-selection .mood {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  
+  .mood-options .stars {
+    color: gold;
+  }
+  
+  /* Mood Prediction */
+  .mood-prediction .highlight {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .submit-btn {
+    background: purple;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Streaks */
+  .streak-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .week-streak {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .day {
+    width: 30px;
+    height: 30px;
+    background: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  
+  .day.completed {
+    background: purple;
+    color: white;
+  }
+  
+  /* Quote */
+  .quote blockquote {
+    font-style: italic;
+    color: purple;
+    background: lavender;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
