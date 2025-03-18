@@ -13,17 +13,15 @@ const Signin = () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/signin/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("userId", data.user_id); // Store user ID
-        localStorage.setItem("username", data.username); // Store username
+        localStorage.setItem("userId", data.user_id);
+        localStorage.setItem("username", data.username);
         navigate("/home");
       } else {
         setError("Incorrect username or password");
@@ -32,6 +30,7 @@ const Signin = () => {
       setError("Something went wrong. Try again.");
     }
   };
+
   return (
     <div>
       <h2>Signin</h2>

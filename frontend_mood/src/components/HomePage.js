@@ -5,46 +5,70 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const userId = 1; // Replace with actual user ID after login
+  const userId = localStorage.getItem("userId"); // Get logged-in user's ID
+  const [username, setUsername] = useState(""); // Store user's name
   const [moodRatings, setMoodRatings] = useState({});
-  const [existingRatings, setExistingRatings] = useState({});
   const [streak, setStreak] = useState({ current: 0, longest: 0 });
   const [weekDays, setWeekDays] = useState({});
-
+  
   useEffect(() => {
-    fetchMoodRatings();
-    fetchStreaks();
-  }, []);
+    if (!userId) {
+      navigate("/"); // Redirect to login if no user is logged in
+    } else {
+      fetchUserProfile();
+      fetchMoodRatings();
+      fetchStreaks();
+    }
+  }, [userId]);
 
-  // Fetch mood ratings from the backend
-  const fetchMoodRatings = async () => {
+  // Fetch User Profile (Name)
+  const fetchUserProfile = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/get-user-moods/${userId}/`);
+      const response = await fetch(`http://127.0.0.1:8000/api/get-user-profile/${userId}/`);
       const data = await response.json();
 
-      if (Array.isArray(data)) {
-        const ratingsMap = {};
-        data.forEach((rating) => {
-          ratingsMap[rating.mood] = { id: rating.id, rating: rating.rating };
-        });
-
-        setMoodRatings(ratingsMap);
-        setExistingRatings(ratingsMap);
+      if (response.ok) {
+        setUsername(data.first_name || "User");
+      } else {
+        console.error("Error fetching user profile:", data.error);
       }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+
+  // Fetch Mood Ratings
+  const fetchMoodRatings = async () => {
+    if (!userId) return;
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/get-mood-ratings/${userId}/`);
+      if (!response.ok) throw new Error("Failed to fetch mood ratings");
+
+      const data = await response.json();
+      const ratingsMap = {};
+      data.forEach((rating) => {
+        ratingsMap[rating.mood] = { id: rating.id, rating: rating.rating };
+      });
+
+      setMoodRatings(ratingsMap);
     } catch (error) {
       console.error("Error fetching mood ratings:", error);
     }
   };
 
-  // Fetch user streak data
+  // Fetch Streak Data
   const fetchStreaks = async () => {
+    if (!userId) return;
+
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/get-user-streaks/${userId}/`);
+      const response = await fetch(`http://127.0.0.1:8000/api/get-mood-streak/${userId}/`);
       const data = await response.json();
+      if (!response.ok) throw new Error("Failed to fetch streak data");
 
-      setStreak({ current: data.current_streak, longest: data.longest_streak });
+      setStreak({ current: data.current_streak || 0, longest: data.longest_streak || 0 });
 
-      // Track which days in the last 7 days have submissions
+      // Track last 7 days
       const today = new Date();
       const daysMap = {};
       for (let i = 6; i >= 0; i--) {
@@ -59,37 +83,45 @@ const HomePage = () => {
     }
   };
 
-  // Handle rating selection
+  // Handle Mood Selection
   const handleRatingChange = (mood, rating) => {
     setMoodRatings((prev) => ({
       ...prev,
-      [mood]: { ...prev[mood], rating },
+      [mood]: { id: prev[mood]?.id || null, rating },
     }));
   };
 
-  // Submit or update mood ratings and update streak
-  const submitMoodRatings = async () => {
+  // Submit New Mood Entry
+  const submitMood = async () => {
+    if (!userId) return;
+
     try {
-      for (let mood in moodRatings) {
-        if (moodRatings[mood].id) {
-          // Update existing rating
-          await fetch(`http://127.0.0.1:8000/api/update-mood/${moodRatings[mood].id}/`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ rating: moodRatings[mood].rating }),
-          });
-        } else {
-          // Submit new rating
-          await fetch("http://127.0.0.1:8000/api/submit-mood/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ user: userId, mood, rating: moodRatings[mood].rating }),
-          });
-        }
+      const requestData = {
+        user_id: userId,
+        happy: moodRatings["Happy"]?.rating || 0,
+        excited: moodRatings["Excited"]?.rating || 0,
+        sad: moodRatings["Sad"]?.rating || 0,
+        nervous: moodRatings["Nervous"]?.rating || 0,
+        worried: moodRatings["Worried"]?.rating || 0,
+        bored: moodRatings["Bored"]?.rating || 0,
+        angry: moodRatings["Angry"]?.rating || 0,
+      };
+
+      const response = await fetch("http://127.0.0.1:8000/api/submit-mood/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Mood submitted successfully!");
+        fetchMoodRatings(); // Refresh mood ratings
+        fetchStreaks(); // Update streak after submission
+      } else {
+        console.error("Error submitting mood ratings:", data.error);
       }
-      alert("Mood ratings updated!");
-      fetchMoodRatings(); // Refresh the data
-      fetchStreaks(); // Update streak after submission
     } catch (error) {
       console.error("Error submitting mood ratings:", error);
     }
@@ -115,6 +147,7 @@ const HomePage = () => {
       <div className="main-content">
         <header>
           <h1>HOMEPAGE</h1>
+          <h2>Welcome, {username}</h2> {/* ✅ User's name displayed */}
           <button className="logout" onClick={() => navigate("/")}>
             <FaSignOutAlt /> LOG OUT
           </button>
@@ -156,15 +189,15 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <button className="submit-btn" onClick={submitMoodRatings}>SUBMIT/UPDATE RATINGS</button>
+          <button className="submit-btn" onClick={submitMood}>SUBMIT</button>
         </section>
 
-        {/* Display Existing Mood Ratings */}
+        {/* Display Mood Ratings */}
         <section className="existing-ratings">
-          <h2>Your Previous Mood Ratings</h2>
+          <h2>Your Mood Ratings</h2>
           <ul>
-            {Object.entries(existingRatings).map(([mood, { rating }]) => (
-              <li key={mood}>{mood}: {rating} </li>
+            {Object.entries(moodRatings).map(([mood, { rating }]) => (
+              <li key={mood}>{mood}: {rating}</li>
             ))}
           </ul>
         </section>

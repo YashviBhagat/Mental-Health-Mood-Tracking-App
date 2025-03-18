@@ -1,12 +1,22 @@
 from rest_framework import serializers
-from .models import Signup, MoodRating
+from .models import SignIn, SignUp, MoodRating, MoodStreak
 
-class SignupSerializer(serializers.ModelSerializer):
+class SignInSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Signup
+        model = SignIn
+        fields = '__all__'
+
+class SignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SignUp
         fields = '__all__'
 
 class MoodRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = MoodRating
+        fields = '__all__'
+
+class MoodStreakSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MoodStreak
         fields = '__all__'
