@@ -1,19 +1,24 @@
 from django.db import models
-
-class User(models.Model):
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    dateOfBirth = models.CharField(max_length=50)
-    gender = models.CharField(max_length=50)
-    physicalActivityLevel = models.CharField(max_length=50)
-    last_login = models.CharField(max_length=50)
+           
+class NewNote(models.Model):
+    user_note = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    last_updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.__dict__)
+        return self.user_note
     
-class Login(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+#login page data save to use it as id for other features
+class SavedText(models.Model):
+    username = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = "User"
+
+    def __str__(self):
+        return self.content[:50] 
+        

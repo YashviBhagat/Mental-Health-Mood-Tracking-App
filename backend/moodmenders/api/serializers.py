@@ -1,16 +1,16 @@
+
+
 from rest_framework import serializers
-from .models import User
+from .models import SavedText, NewNote#, Login  # ✅ Ensure correct imports
 
-class UserSerializer(serializers.ModelSerializer):
+class NewNoteSerializer(serializers.ModelSerializer):  
     class Meta:
-        model = User
-        fields = '__all__' 
+        model = NewNote  
+        fields = '__all__'  # ✅ Include all fields
 
-    def create(self, validated_data):
-        instance = self.Meta.model(**validated_data)
-        instance.save() 
-        return instance
 
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField(write_only=True)
+class SavedTextSerializer(serializers.ModelSerializer):  
+    class Meta:
+        model = SavedText  
+        fields = '__all__'  # ✅ Include all fields
+

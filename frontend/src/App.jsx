@@ -1,72 +1,61 @@
-import { useEffect, useState } from 'react';
-
-import './App.css';
+import { useState } from 'react';
+/*import axios from 'axios';*/
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [responseData, setResponseData] = useState(null);
+  const [text, setText] = useState("");
+  const navigate = useNavigate();
+ 
 
-  useEffect(() => {
-    
-  }, []);
-
-  const login = async () => {
-    const loginData = {
-      username,
-      password,
-    };
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/user/login/", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const data = await response.json();
-      
-
-      if (response.ok) {
-        setResponseData(data.message);
-        // TODO: navigate to home page
-      } else {
-        setResponseData(data.error);
+  const handleSave = async () => {
+    if (text.trim() !== "") {
+      try {
+        console.log("📤 Sending request to save login:", text); // ✅ Log input data
+  
+        const response = await fetch("http://127.0.0.1:8000/api/save-text/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: text }),
+        });
+  
+        const data = await response.json();
+        console.log("📥 Server response:", data); // ✅ Log API response
+  
+        if (response.ok) {
+          alert("Login saved successfully!");
+          navigate("/home"); // ✅ Redirect after saving
+        } else {
+          console.error("🚨 Error saving login:", data);
+          alert("Failed to save login. Please try again.");
+        }
+      } catch (error) {
+        console.error("🔥 Network error:", error);
+        alert("Network error. Check your server.");
       }
-
-    } catch (err) {
-      console.log(err);
     }
   };
+  
 
   return (
     <>
       <h1>Nirvana</h1>
       <div>
         <input 
-          type='text' 
-          placeholder='Enter username' 
-          onChange={(e) => setUsername(e.target.value)}
+          type="text" 
+          placeholder="Enter login text" 
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-        <br></br>
-        <input 
-          type='password' 
-          placeholder='Enter Password' 
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br></br><br></br>
-        <button onClick={login}>Login</button>
-
-        {responseData && ( 
-        <div style={{ marginTop: '20px' }}>
-          {<p>{responseData}</p>}
-        </div>
-      )}
+        <br /><br />
+        <button onClick={handleSave} disabled={!text.trim()}>
+          Save Login
+        </button>
       </div>
     </>
   );
 }
 
-export default App;
+export default App; 
+

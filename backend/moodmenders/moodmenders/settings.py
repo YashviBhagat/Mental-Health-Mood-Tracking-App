@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'api',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'moodmenders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -50,7 +52,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-     'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = "moodmenders.urls"
@@ -79,9 +80,9 @@ WSGI_APPLICATION = "moodmenders.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "nirvana_db",   # Change to your database name
-        "USER": "menders",      # Change to your MySQL username
-        "PASSWORD": "Mood2025!!",  # Change to your MySQL password
+        "NAME": "mysql",   # Change to your database name
+        "USER": "root",      # Change to your MySQL username
+        "PASSWORD": "Mysql*9900",  # Change to your MySQL password
         "HOST": "localhost",     # Use "127.0.0.1" if "localhost" fails
         "PORT": "3306",          # MySQL default port
         
