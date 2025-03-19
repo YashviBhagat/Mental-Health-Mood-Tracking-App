@@ -27,7 +27,7 @@ def login_user(request):
             if user.password == password:  
                 
                 login(request, user)  # Establish session
-                return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Login successful', 'userId': user.pk, 'username': user.username}, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         except User.DoesNotExist:
