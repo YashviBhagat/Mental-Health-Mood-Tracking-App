@@ -9,29 +9,26 @@ const Signin = () => {
 
   const handleSignin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/signin/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+        const response = await fetch("http://127.0.0.1:8000/api/signin/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+        });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("userId", data.user_id); // Store user ID
-        localStorage.setItem("username", data.username); // Store username
-        navigate("/home");
-      } else {
-        setError("Incorrect username or password");
-      }
+        const data = await response.json();
+        if (response.ok) {
+            localStorage.setItem("userId", data.user_id);
+            localStorage.setItem("username", data.username);
+            navigate("/home");
+        } else {
+            setError(data.error || "Signin failed");
+        }
     } catch (error) {
-      setError("Something went wrong. Try again.");
+        setError("Something went wrong. Try again.");
     }
-  };
+};
+
   return (
     <div>
       <h2>Signin</h2>

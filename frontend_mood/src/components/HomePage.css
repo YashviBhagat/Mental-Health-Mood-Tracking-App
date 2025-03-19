@@ -1,181 +1,165 @@
-/* HomePage.css */
-
+/* Main Container */
 .homepage-container {
-    display: flex;
-    height: 100vh;
-    font-family: "Arial", sans-serif;
-    background-color: #f3f3f3;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    width: 250px;
-    background-color: #f8f1e5;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .tagline {
-    font-size: 12px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #555;
-  }
-  
-  .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar nav ul li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .sidebar nav ul li svg {
-    margin-right: 10px;
-  }
-  
-  /* Main Content */
-  .main-content {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-  }
-  
-  .header-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* Mood Selection */
-  .mood-selection, .mood-prediction, .streaks, .quote {
-    background: white;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 8px;
-  }
-  
-  .mood-selection .mood {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-  }
-  
-  .mood-options .stars {
-    color: gold;
-  }
-  
-  /* Mood Prediction */
-  .mood-prediction .highlight {
-    color: orange;
-    font-weight: bold;
-  }
-  
-  .submit-btn {
-    background: purple;
-    color: white;
-    padding: 5px 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-  
-  /* Streaks */
-  .streak-number {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .week-streak {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .day {
-    width: 30px;
-    height: 30px;
-    background: lightgray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-  }
-  
-  .day.completed {
-    background: purple;
-    color: white;
-  }
-  
-  /* Quote */
-  .quote blockquote {
-    font-style: italic;
-    color: purple;
-    background: lavender;
-    padding: 10px;
-    border-radius: 5px;
-  }
+  display: flex;
+  height: 100vh;
+  background-color: #faf1dd;
+   /* Light Beige */
+}
 
-  .streaks {
-    background-color: #d8ebe4;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .streak-number {
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
-  .week-streak {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .day {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .day.completed {
-    background-color: #8473d9;
-    color: white;
-  }
-  
-  
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background: #ececec;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+  color: #cc95d1; /* Change color on hover */
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between; /* Spreads username, title, and logout */
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+
+.user-info {
+  display: flex;
+  align-items: left;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+
+.username {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333; /* Adjust color */
+}
+
+
+/* Center the Homepage Title */
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+
+.logout {
+  background-color: #a84d4d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Grid Layout for Mood, Streaks, and Prediction */
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Left = Mood Selection, Right = Other sections */
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+}
+
+/* Mood Selection */
+.mood-selection {
+  grid-row: span 3;
+  background: #d8ebe4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mood-selection .mood {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+/* Mood Prediction */
+.mood-prediction, .streaks, .quote {
+  background: #d8ebe4;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Streaks */
+.streaks .week-streak {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.streaks .day {
+  width: 30px;
+  height: 30px;
+  background: #ececec;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.streaks .day.completed {
+  background: #E7C6FF;
+}
+
+/* Quote */
+.quote {
+  text-align: center;
+  font-style: italic;
+  background: #d8ebe4;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn{
+  background-color: #bd95db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+
+}

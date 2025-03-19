@@ -79,12 +79,11 @@ WSGI_APPLICATION = "moodmenders.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "nirvana_db",   # Change to your database name
-        "USER": "menders",      # Change to your MySQL username
-        "PASSWORD": "Mood2025!!",  # Change to your MySQL password
-        "HOST": "localhost",     # Use "127.0.0.1" if "localhost" fails
-        "PORT": "3306",          # MySQL default port
-        
+        "NAME": "nirvana_db",   # Your MySQL database name
+        "USER": "menders",      # Your MySQL username
+        "PASSWORD": "Mood2025!!",  # Your MySQL password
+        "HOST": "localhost",     
+        "PORT": "3306",          # Default MySQL port
     }
 }
 

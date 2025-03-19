@@ -4,8 +4,9 @@ from rest_framework import status
 from datetime import timedelta
 from django.utils.timezone import now
 from .models import Signup, MoodRating
-from .serializers import SignupSerializer
+from .serializers import MoodRatingSerializer, SignupSerializer
 from django.contrib.auth.hashers import check_password
+from django.http import JsonResponse
 
 @api_view(['GET'])
 def get_signup(request):
@@ -15,8 +16,8 @@ def get_signup(request):
 
 @api_view(['POST'])
 def create_signup(request):
-    data = request.data
-    serializer = SignupSerializer(data=data)
+    """ Handles user registration with password hashing """
+    serializer = SignupSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Signup successful! Redirect to Signin"}, status=status.HTTP_201_CREATED)
@@ -44,29 +45,23 @@ def signup_detail(request, pk):
 
 @api_view(['POST'])
 def signin_user(request):
+    """ Handles user authentication with password verification """
     username = request.data.get("username")
     password = request.data.get("password")
 
     try:
         user = Signup.objects.get(username=username)
-
-        if password == user.password:  # Not recommended for production (use password hashing)
-            return Response({
-                "message": "Signin successful",
-                "user_id": user.id,
-                "username": user.username
-            }, status=200)
+        if check_password(password, user.password):  
+            return Response({"message": "Signin successful", "user_id": user.id, "username": user.username}, status=200)
         else:
             return Response({"error": "Incorrect username or password"}, status=401)
-    
     except Signup.DoesNotExist:
         return Response({"error": "User not found"}, status=404)
 
+
 @api_view(['POST'])
 def submit_mood_rating(request):
-    """
-    Submits a mood rating and updates the user's streak.
-    """
+    """ Handles mood rating submission and updates streak """
     user_id = request.data.get("user")
     mood = request.data.get("mood")
     rating = request.data.get("rating")
@@ -75,25 +70,33 @@ def submit_mood_rating(request):
         user = Signup.objects.get(id=user_id)
         today = now().date()
 
-        # Update mood ratings
-        user.mood_ratings[mood] = rating
-
-        # Handle streak updates
+        # Check if last submission date exists
         if user.last_submission_date:
-            if user.last_submission_date == today - timedelta(days=1):
-                user.current_streak += 1
-            elif user.last_submission_date < today - timedelta(days=1):
-                user.current_streak = 1  # Reset streak
+            days_since_last_submission = (today - user.last_submission_date).days
+        else:
+            days_since_last_submission = None
 
+        #Update streak based on last submission date
+        if days_since_last_submission == 1:
+            user.current_streak += 1  # Increase streak if submitted yesterday
+        elif days_since_last_submission is None or days_since_last_submission > 1:
+            user.current_streak = 1  # Reset streak if skipped a day or first time
+
+        # Update longest streak if current streak is higher
         user.longest_streak = max(user.longest_streak, user.current_streak)
+
+        # Update last submission date
         user.last_submission_date = today
         user.save()
+
+        # Save mood rating in database
+        MoodRating.objects.create(user=user, mood=mood, rating=rating)
 
         return Response({
             "message": "Mood rating submitted!",
             "current_streak": user.current_streak,
             "longest_streak": user.longest_streak,
-            "mood_ratings": user.mood_ratings
+            "last_submission_date": str(user.last_submission_date)
         }, status=201)
 
     except Signup.DoesNotExist:
@@ -141,3 +144,19 @@ def get_user_streaks(request, user_id):
         })
     except Signup.DoesNotExist:
         return Response({"error": "User not found"}, status=404)
+    
+@api_view(["GET"])  # Ensures this view only allows GET requests
+def get_user_moods(request, user_id):
+    try:
+        user = Signup.objects.get(id=user_id)
+        moods = MoodRating.objects.filter(user=user).values("mood", "rating")
+
+        # Convert query results into a dictionary format
+        mood_data = {mood["mood"]: {"rating": mood["rating"]} for mood in moods}
+
+        return JsonResponse(mood_data)  # Returns { "Happy": {"rating": 4}, "Sad": {"rating": 2} }
+    except Signup.DoesNotExist:
+        return JsonResponse({"error": "User not found"}, status=404)
+    
+
+
