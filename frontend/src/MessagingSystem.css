@@ -1,0 +1,205 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+}
+
+.messaging-container {
+  display: flex;
+  width: 800px; /* Total width = 400px (left) + 400px (right) */
+  height: 500px; /* Fixed height */
+  border: 2px solid black;
+  margin: auto; /* Center the container */
+}
+
+/* Left Panel: Search + User List */
+.left-panel {
+  width: 400px; /* Fixed width */
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid black;
+  
+}
+
+.search-container {
+  position: relative; /* Needed for absolute positioning */
+ /* width: 100%;*/
+  height: 8%;
+  background: #66c6c5;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid black;
+  
+}
+
+.search-container input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+.chat-list {
+  flex: 1;
+  background: #66c6c5;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: rgba(102, 198, 197, 0.3);
+}
+
+.chat-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+
+.chat-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  background: rgba(102, 198, 197, 0.3); /* same as whole page */
+}
+
+/* Hover Effect - subtle highlight */
+.chat-list li:hover {
+  background: rgba(102, 198, 197, 0.5); /* slightly more visible on hover */
+}
+
+/* Highlight Search Results */
+.search-active li {
+  background: rgba(240, 240, 240, 0.5); /* Light gray with 50% opacity */
+  transition: background 0.3s ease-in-out;
+}
+
+.search-active li:hover {
+  background: rgba(200, 200, 200, 0.7); /* Slightly darker on hover */
+}
+
+
+.right-panel {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: rgba(102, 198, 197, 0.3); /* Match left side exactly */
+}
+
+.user-header {
+  height: 10%;
+  background: #66c6c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 2px solid black;
+}
+
+.chat-window {
+  flex: 1;
+  background-color: rgba(102, 198, 197, 0.3); /* Match left side exactly */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Messages */
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+
+.self {
+  background-color: white;
+  color: black;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin: 5px;
+  width: 60%;
+  margin-left: auto; /* ensures right alignment */
+  font-style: italic;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-align: center;
+  word-wrap: break-word; /* wraps long text */
+}
+
+
+.other {
+  background-color: #b5838d;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin: 5px;
+  width: 40%;
+  align-self: flex-start;
+  font-style: italic;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-align: center;
+  word-wrap: break-word; /* wraps long text */
+}
+
+/* Message Input */
+.message-input {
+  display: flex;
+  padding: 10px;
+  border-top: 2px solid black;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+.message-input button {
+  padding: 8px;
+  background: #b5838d;/*#66c6c5;*/
+  /*color: white;*/
+  border: none;
+  cursor: pointer;
+}
+
+.message-input button:hover {
+  background: #66c6c5;
+}
+
+/* Search Results (Displayed Below Search Box) */
+.search-results {
+  background: white;
+  border: 1px solid #ddd;
+  position: absolute;
+  width: 60%; /* ✅ Keep width at 20% */
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 5px;
+  margin-top: 5px; /* ✅ Moves results slightly below input */
+  z-index: 10;
+  left: 5%; /* ✅ Align with input field */
+  top: 100%; /* ✅ Positions exactly below input */
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for search results */
+.search-results li {
+  padding: 10px;
+  cursor: pointer;
+  background: rgba(240, 240, 240, 0.5);
+  transition: background 0.3s ease-in-out;
+  text-align: left;
+  width: 100%;
+}
+
+/* Highlight search result on hover */
+.search-results li:hover {
+  background: rgba(200, 200, 200, 0.7);
+}
