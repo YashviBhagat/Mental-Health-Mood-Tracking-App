@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import HomePage from "./HomePage";
-import HomePage from "./components/HomePage";
-// import Signin from "./Signin";
-import Signin from "./components/Signin";
-import Signup from "./components/Signup";
-// import Signup from "./Signup";
+
+import Signin from "./components/Signin";  
+import Signup from "./components/Signup";  
+import HomePage from "./components/HomePage";  
 import Journal from "./components/Journal";
 import Meditation from "./components/Meditation";
-import Messageing from "./components/Messaging";
+import Messaging from "./components/Messaging";
 import MoodAnalytics from "./components/MoodAnalytics";
 import Notification from "./components/Notification";
-import TherapistAppoinment from "./components/TherapistAppoinment";
-import Feedback from "./components/feedback";
+import TherapistAppointment from "./components/TherapistAppointment";  
+import Feedback from "./components/Feedback";
+import Settings from "./components/Settings";
+
 
 const App = () => {
   return (
@@ -23,11 +23,12 @@ const App = () => {
         <Route path="/home" element={<HomePage />} />
         <Route path="/journal" element={<Journal />} />
         <Route path="/meditation" element={<Meditation />} />
-        <Route path="/messaging" element={<Messageing />} />
+        <Route path="/messaging" element={<Messaging />} />
         <Route path="/moodanalytics" element={<MoodAnalytics />} />
         <Route path="/notification" element={<Notification />} />
-        <Route path="/therapistappoinment" element={<TherapistAppoinment />} />
-        <Route path="/feedback" element={<Feedback />} />
+        <Route path="/TherapistAppointment" element={<TherapistAppointment />} />
+        <Route path="/Feedback" element={<Feedback />} />
+        <Route path="/Settings" element={<Settings />} />
 
       </Routes>
     </Router>

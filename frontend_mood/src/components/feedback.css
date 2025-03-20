@@ -1,0 +1,48 @@
+.feedback-container {
+    
+    background-color: #d8ebe4; 
+    width: 50%;  
+    max-width: 600px;  
+    height: auto;  
+    padding: 30px;
+    margin: 80px auto;  
+    
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+      
+}
+.sub-container {
+    /* background-color: #c3bac7;  */
+    background-color:rgba(231, 198, 255, 0.2);
+    width: 70%;  
+    max-width: 500px;  
+    height: auto;  
+    padding: 30px;
+    
+    /* Positioning */
+    margin-top: 20px;  /* Space from the top */
+    margin-left: 20px; /* Space from the left */
+    
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.icon {
+    font-size: 50px; /* Set icon size */
+}
+
+/* 🔹 Assign colors via CSS instead of inline styles */
+.excellent { color: #4CAF50;
+} /* Green */
+.great { color: #66BB6A; } /* Light Green */
+.good { color: #d1c86f; } /* Yellow */
+.okay { color: #FFA726; } /* Orange */
+.bad { color: #F44336; } /* Red */
+.very-bad { color: #D32F2F; } /* Dark Red */
+
+.feedback-button:hover
+ {
+    transform: scale(1.2); /* Slightly enlarge when selected */
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaHome, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaHome,FaCommentDots,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate,Link} from "react-router-dom";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { VscFeedback } from "react-icons/vsc";
+
 
 
 const HomePage = () => {
@@ -44,6 +45,7 @@ const fetchStreaks = async () => {
   try {
       const response = await fetch(`http://127.0.0.1:8000/api/get-user-streaks/${userId}/`);
       const data = await response.json();
+      
 
       setStreak({ current: data.current_streak, longest: data.longest_streak });
 
@@ -147,12 +149,12 @@ const updateQuote = (moods) => {
     <nav>
       <ul>
         <li><Link to="/"><FaHome /> Homepage</Link></li>
-        <li><Link to="moodanalytics"><FaChartBar /> Mood Analytics</Link></li>
-        <li><Link to="therapistappoinment"><FaUserMd /> Therapist Appointment</Link></li>
-        <li><Link to="meditation"><FaSpa /> Meditation</Link></li>
-        <li><Link to="journal"><FaBook /> Journal</Link></li>
-        <li><Link to="notification"><FaBell /> Notifications</Link></li>
-        <li><Link to="messaging"><FaComments /> Messaging</Link></li>
+        <li><Link to="/moodanalytics"><FaChartBar /> Mood Analytics</Link></li>
+        <li><Link to="/therapistappoinment"><FaUserMd /> Therapist Appointment</Link></li>
+        <li><Link to="/meditation"><FaSpa /> Meditation</Link></li>
+        <li><Link to="/journal"><FaBook /> Journal</Link></li>
+        <li><Link to="/notification"><FaBell /> Notifications</Link></li>
+        <li><Link to="/messaging"><FaComments /> Messaging</Link></li>
       </ul>
     </nav>
   </aside>
@@ -166,10 +168,16 @@ const updateQuote = (moods) => {
       </div>
 
       <h1>HOMEPAGE</h1>
-      
+      {/* Settings and Logout Buttons */}
+      <div className="header-buttons">
+          <button className="settings-button" onClick={() => navigate("/settings")}>
+            <FaCog /> {/* Settings Icon */}
+          </button>
+        
       <button className="logout" onClick={() => navigate("/")}>
             <FaSignOutAlt /> LOG OUT
       </button>
+      </div>
 
     </header>
 
@@ -230,6 +238,16 @@ const updateQuote = (moods) => {
         <h2>Quote of the day</h2>
         <p>{quote}</p>
       </section>
+
+      
+      <button className="footer-buttons" onClick={() => navigate("/feedback")}>
+          <VscFeedback /> {/* Settings Icon */}
+      </button>
+        
+      
+
+
+
     </div>
   </div>
 </div>

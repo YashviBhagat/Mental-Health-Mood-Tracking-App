@@ -39,3 +39,28 @@ class MoodRating(models.Model):
     mood = models.CharField(max_length=50)
     rating = models.IntegerField()
     date = models.DateField(auto_now_add=True)
+
+
+class Feedback(models.Model):
+    RATING_CHOICES = [
+        (1, "Very Bad"),
+        (2, "Bad"),
+        (3, "Okay"),
+        (4, "Good"),
+        (5, "Great"),
+        (6, "Excellent"),
+    ]
+
+    user = models.ForeignKey(Signup, on_delete=models.CASCADE)  # Link feedback to a user
+    rating = models.IntegerField(choices=RATING_CHOICES)  # Store rating (1-6)
+    comment = models.TextField(blank=True, null=True)  # Optional user comment
+    created_at = models.DateTimeField(auto_now_add=True)  # Auto timestamp
+
+
+class MeditationSession(models.Model):
+    user = models.CharField(max_length=100)  # Or ForeignKey(Signup, on_delete=models.CASCADE)
+    duration = models.IntegerField()  # Duration in seconds
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} - {self.duration // 60} minutes"

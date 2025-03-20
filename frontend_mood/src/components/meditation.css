@@ -1,0 +1,112 @@
+.meditation-container {
+    text-align: center;
+    padding: 30px;
+    background-color: #dbeee4;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 800px;
+    height: auto;
+    margin: 20px auto;
+    
+}
+
+.timer-display {
+    font-size: 50px;   /* Bigger font */
+    font-weight: bold;
+    background: white;
+    padding: 20px;
+    width: 220px;  /* Ensure equal width */
+    height: 220px; /* Ensure equal height */
+    line-height: 220px; /* Center text vertically */
+    border-radius: 50%;  /* Makes it a perfect circle */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 15px auto;  /* Center it properly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a slight shadow */
+     
+}
+
+.start-button, .reset-button, .save-button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.start-button {
+    background: #6da76d;
+    color: white;
+}
+
+.reset-button {
+    background: #f05d5d;
+    color: white;
+}
+
+.save-button {
+    background: #007bff;
+    color: white;
+}
+
+.time-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.time-buttons button {
+    padding: 8px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.music-selection {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.music-selection select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #444;
+}
+
+
+.music-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.music-buttons button {
+    padding: 10px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.music-buttons button.selected {
+    background: #6da76d;
+    color: white;
+}
+
+.stop-button {
+    margin-top: 10px;
+    background: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
