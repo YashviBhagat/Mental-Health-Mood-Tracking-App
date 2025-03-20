@@ -1,0 +1,271 @@
+.notes-list-container {
+  background-color: rgba(102, 198, 197, 0.3);
+  padding: 30px;
+  border-radius: 2px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  margin: 50px auto;
+  border: 1px solid black;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+  overflow: hidden;
+  position: relative;
+}
+
+.notes-list-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
+  display: block;
+  border-bottom: 2px solid black;
+  padding-bottom: 2px;
+  margin: 0 auto 5px auto; /* No extra space below */
+}
+
+/* ✅ Empty Note Positioned Below the Title (Left Side) */
+.empty-note-container {
+  display: flex;
+  justify-content: flex-start; /* Aligns empty note to the left */
+  align-items: flex-start;
+  margin-top: 5px;
+}
+
+.empty-note {
+  background-color: rgba(102, 198, 197, 0.3);
+  padding: 2px;
+  width: 300px;
+  height: 120px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10px;
+  margin-bottom: 2%; /* Small margin below empty note */
+  margin-top: 15px;
+}
+
+.empty-note:hover {
+  background-color: rgba(102, 198, 197, 0.5);
+}
+
+h3.empty-note-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  margin: 4px 0; /* Further reduced margin */
+  padding-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 4px;
+  font-style: italic;
+}
+
+/* ✅ Saved Notes Start Immediately Below Empty Note */
+.notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px;
+  max-height: 370px; /* Adjusted height for better scrolling */
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* ✅ Scrollbar Styling */
+.notes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notes-list::-webkit-scrollbar-track {
+  background: rgba(102, 198, 197, 0.1);
+  border-radius: 3px;
+}
+
+.notes-list::-webkit-scrollbar-thumb {
+  background: rgba(102, 198, 197, 0.5);
+  border-radius: 3px;
+}
+
+.notes-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 198, 197, 0.7);
+}
+
+.note-item h3 {
+color: black;
+font-size: 16px;
+font-style: italic;
+padding-bottom: 4px;
+margin-bottom: 5px;
+margin-top: 5px;
+}
+
+.note-item p {
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+/* ✅ Saved Note Layout */
+.note-item {
+  background-color: rgba(102, 198, 197, 0.3);
+  padding: 6px; /* Reduced padding */
+  border: 2px solid #000;
+  border-radius: 8px;
+  margin-bottom: 4px; /* Reduced margin */
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+  width: 300px;
+  height: 90px; /* Adjusted height to fit all content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes elements evenly */
+}
+
+/* ✅ Title - Compact & Adjusted */
+.note-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin: 1px 0; /* Further reduced margin */
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ Description - Adjusted */
+p.empty-note-description {
+  color: black;
+  font-size: 20px;
+  font-weight: normal;
+ /* margin: 1px 0; /* Further reduced margin */
+  padding-bottom: 1px;
+  white-space: nowrap;
+  /*
+  overflow: hidden;
+  text-overflow: ellipsis;*/
+  /*flex-grow: 1; /* Allows description to use remaining space */
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+/* ✅ Note footer - Contains Date */
+.note-footer {
+  display: flex;
+  justify-content: flex-start; /* Aligns date to left */
+  font-style: italic;
+  color: #555;
+  font-size: 10px;
+  margin-top: 4px; /* ✅ Small gap from description */
+  height: auto; /* ✅ Ensures the footer height adapts */
+  align-items: flex-start;
+  font-weight: bold;
+  flex-direction: column; /* ✅ Makes sure the date moves to the next line */
+}
+
+/* ✅ Divider for better separation */
+.note-divider {
+  border: 0;
+  border-top: 1px solid black !important; /* Thinner line */
+  width: 100%;
+  margin: 1px 0; /* Further reduced spacing */
+  opacity: 1;
+  display: block;
+}
+
+.note-date {
+  font-size: 10px;
+  font-weight: bold;
+  color: #444;
+}
+*/
+.note-date {
+  font-size: 10px;
+  font-weight: bold;
+  color: #444;
+  margin-top: 4px; /* ✅ Adds space between description and date */
+}
+
+.h3{
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin: 1px 0; /* Further reduced margin */
+  padding-bottom: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ Keep the "Add Task" button at the bottom */
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+/* ✅ Add Task Button */
+.add-task-button-bottom {
+  display: flex;
+  align-items: center;
+  background-color: #66c6c5;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px; /* Further reduced padding */
+  font-size: 14px; /* Reduced size */
+  font-weight: bold;
+  color: #fff;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.add-task-button-bottom:hover {
+  background-color: #4aa6a5;
+}
+
+
+/* ✅ Styles for the circular "Add Task" button */
+.add-task-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #B5838D; /* ✅ Black background */
+  color: white; /* ✅ White "+" symbol */
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%; /* ✅ Makes it a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* ✅ Positioned at the bottom-right corner */
+  position: absolute; /* ✅ Now positioned relative to the container */
+  bottom: 10px; /* ✅ Align at bottom */
+  left: 50%; /* ✅ Center horizontally */
+  transform: translateX(-50%); /* ✅ Shift back 50% of its width */
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1; /* ✅ Fix alignment */
+}
+
+/* ✅ Hover effect */
+.add-task-circle:hover {
+  background-color: #333; /* Darker black on hover */
+}
