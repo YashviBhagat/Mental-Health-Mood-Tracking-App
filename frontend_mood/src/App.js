@@ -5,6 +5,7 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";  
 import HomePage from "./components/HomePage";  
 import Journal from "./components/Journal";
+import NoteForm from "./components/NoteForm";
 import Meditation from "./components/Meditation";
 import Messaging from "./components/Messaging";
 import MoodAnalytics from "./components/MoodAnalytics";
@@ -14,6 +15,7 @@ import Feedback from "./components/Feedback";
 import Settings from "./components/Settings";
 
 
+
 const App = () => {
   return (
     <Router>
@@ -21,7 +23,7 @@ const App = () => {
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/journal" element={<Journal />} />
+        
         <Route path="/meditation" element={<Meditation />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/moodanalytics" element={<MoodAnalytics />} />
@@ -29,6 +31,9 @@ const App = () => {
         <Route path="/TherapistAppointment" element={<TherapistAppointment />} />
         <Route path="/Feedback" element={<Feedback />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/journal" element={<Journal />} />  
+        <Route path="/new_notes" element={<NoteForm />} /> 
+        
 
       </Routes>
     </Router>

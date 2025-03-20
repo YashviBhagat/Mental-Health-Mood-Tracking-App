@@ -3,7 +3,7 @@
     background-color: #d8ebe4; 
     width: 50%;  
     max-width: 600px;  
-    height: auto;  
+    height: 100%;  
     padding: 30px;
     margin: 80px auto;  
     
@@ -29,6 +29,25 @@
     text-align: center;
 }
 
+
+.sub-container2 {
+    /* background-color: #c3bac7;  */
+    background-color:rgba(231, 198, 255, 0.2);
+    width: 70%;  
+    max-width: 500px;  
+    height: 20%;  
+    padding: 30px;
+    
+    /* Positioning */
+    margin-top: 20px;  /* Space from the top */
+    margin-left: 20px; /* Space from the left */
+    
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+
 .icon {
     font-size: 50px; /* Set icon size */
 }
@@ -43,6 +62,7 @@
 .very-bad { color: #D32F2F; } /* Dark Red */
 
 .feedback-button:hover
- {
+ {  
+    display: flex-start;
     transform: scale(1.2); /* Slightly enlarge when selected */
 }

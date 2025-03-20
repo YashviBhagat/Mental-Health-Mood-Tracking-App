@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import save_session,submit_feedback,update_user,get_user_moods,get_signup, create_signup, get_user_streaks, signup_detail, signin_user, submit_mood_rating,get_user_mood_ratings,update_mood_rating # Updated function names
+from .views import get_journals, add_journal, update_journal, delete_journal,save_session,submit_feedback,update_user,get_user_moods,get_signup,create_signup, get_user_streaks, signup_detail, signin_user, submit_mood_rating,get_user_mood_ratings,update_mood_rating # Updated function names
 
 urlpatterns = [
     path('signupP/', get_signup, name='get_signup'),  
@@ -15,7 +15,13 @@ urlpatterns = [
     path("update-user/<int:user_id>/", update_user, name="update-user"),
     path("submit/<int:user_id>/", submit_feedback, name="submit_feedback"),
     path("save-session/", save_session, name="save-session"),
-     
+    path("journals/<int:user_id>/", get_journals, name="get_journals"),
+   
+    path("journals/add/", add_journal, name="add_journal"),  
+
+
+    path("journals/update/<int:journal_id>/", update_journal, name="update_journal"),
+    path("journals/delete/<int:journal_id>/", delete_journal, name="delete_journal"),
     
 
 ]

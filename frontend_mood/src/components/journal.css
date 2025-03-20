@@ -1,0 +1,155 @@
+/* ✅ Container for Journal Page */
+.journal-container {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(102, 198, 197, 0.3);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    height: 80%;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Journal Title Styling */
+.journal-title h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-style: italic;
+    position: relative;
+    padding-bottom: 6px;
+    margin-top: 2px;
+}
+
+.journal-title h3::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 3px;
+    background-color: black;
+    margin: 5px auto;
+}
+
+/* ✅ Journal List */
+.notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* ✅ Scrollbar Styling */
+.notes-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notes-list::-webkit-scrollbar-track {
+    background: rgba(102, 198, 197, 0.1);
+    border-radius: 3px;
+}
+
+.notes-list::-webkit-scrollbar-thumb {
+    background: rgba(102, 198, 197, 0.5);
+    border-radius: 3px;
+}
+
+.notes-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 198, 197, 0.7);
+}
+
+/* ✅ Journal Note Item */
+.note-item {
+    background-color: rgba(102, 198, 197, 0.3);
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: left;
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note-item:hover {
+    background-color: rgba(102, 198, 197, 0.5);
+}
+
+/* ✅ Journal Note Title */
+.note-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+/* Journal Note Description */
+.note-item p {
+    font-size: 14px;
+    color: black;
+}
+
+/*  "➕" Button for Adding New Journal */
+.add-task-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #B5838D; /* ✅ Black background */
+    color: white; /* ✅ White "+" symbol */
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%; /* ✅ Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* ✅ Positioned at the bottom-right corner */
+    position: absolute; /* ✅ Now positioned relative to the container */
+    /* bottom: 5px; ✅ Align at bottom */
+    left: 60%; /* ✅ Center horizontally */
+    transform: translateX(-50%); /* ✅ Shift back 50% of its width */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1; /* ✅ Fix alignment */
+    top: 85%;
+  }
+  
+  /* ✅ Hover effect */
+  .add-task-circle:hover {
+    background-color: #333; /* Darker black on hover */
+  }
+/*  Empty Journal Message */
+.empty-note {
+    background-color: rgba(102, 198, 197, 0.3);
+    padding: 10px;
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+.empty-note:hover {
+    background-color: rgba(102, 198, 197, 0.5);
+}
+
+.empty-note h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.empty-note p {
+    font-size: 16px;
+    color: black;
+}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
+from django.utils.timezone import now
 
 class Signup(models.Model):
     username = models.CharField(max_length=150, unique=True, blank=False, null=False)
@@ -64,3 +65,15 @@ class MeditationSession(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.duration // 60} minutes"
+    
+
+class Journal(models.Model):
+    user = models.ForeignKey(Signup, on_delete=models.CASCADE)  #  Link user properly
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    last_updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.title}"
+    

@@ -4,10 +4,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from datetime import timedelta
 from django.utils.timezone import now
-from .models import Feedback, Signup, MoodRating,MeditationSession
-from .serializers import MoodRatingSerializer, SignupSerializer,FeedbackSerializer
+from .models import Feedback, Signup, MoodRating,MeditationSession,Journal
+from .serializers import MoodRatingSerializer, SignupSerializer,FeedbackSerializer,JournalSerializer
 from django.contrib.auth.hashers import check_password
 from django.http import JsonResponse
+
 
 @api_view(['GET'])
 def get_signup(request):
@@ -232,3 +233,55 @@ def save_session(request):
 
     MeditationSession.objects.create(user=user, duration=duration)
     return Response({"message": "Meditation session saved successfully!"}, status=201)
+
+
+# Get all journal entries for a user
+@api_view(['GET'])
+def get_journals(request, user_id):
+    try:
+        user = Signup.objects.get(id=user_id)
+        journals = Journal.objects.filter(user=user).order_by('-last_updated')
+        serializer = JournalSerializer(journals, many=True)
+        return Response(serializer.data, status=200)
+    except Signup.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+# Add a new journal entry
+@api_view(['POST'])
+def add_journal(request):
+    user_id = request.data.get("user_id")
+    title = request.data.get("title", "")
+    description = request.data.get("description", "")
+
+    try:
+        user = Signup.objects.get(id=user_id)
+        journal = Journal.objects.create(user=user, title=title, description=description)
+        return Response({"message": "Journal added successfully!", "journal_id": journal.id}, status=201)
+    except Signup.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+#  Update an existing journal entry
+@api_view(['PUT'])
+def update_journal(request, journal_id):
+    try:
+        journal = Journal.objects.get(id=journal_id)
+        data = request.data
+
+        journal.title = data.get("title", journal.title)
+        journal.description = data.get("description", journal.description)
+        journal.last_updated = now()
+        journal.save()
+
+        return Response({"message": "Journal updated successfully!"}, status=200)
+    except Journal.DoesNotExist:
+        return Response({"error": "Journal not found"}, status=404)
+
+#  Delete a journal entry
+@api_view(['DELETE'])
+def delete_journal(request, journal_id):
+    try:
+        journal = Journal.objects.get(id=journal_id)
+        journal.delete()
+        return Response({"message": "Journal deleted successfully!"}, status=200)
+    except Journal.DoesNotExist:
+        return Response({"error": "Journal not found"}, status=404)

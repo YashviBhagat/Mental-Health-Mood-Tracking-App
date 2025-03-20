@@ -92,8 +92,8 @@ const Feedback = () => {
                 <div className="feedback-container">
                     <h3>HOW WOULD YOU RATE YOUR EXPERIENCE?</h3>
 
-                    <div className="sub-container">
-                        <div className="feedback-container">
+                   
+                        <div className="sub-container">
                             {/* Rating Emojis */}
                             <div className="emoji-container">
                                 {feedbackOptions.map((option, index) => (
@@ -111,7 +111,7 @@ const Feedback = () => {
 
                         {/* Experience Text Box */}
                         <textarea
-                            className="feedback-textbox"
+                            className="sub-container2"
                             placeholder="Tell us about your experience..."
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
@@ -121,7 +121,7 @@ const Feedback = () => {
                         <button className="submit-feedback" onClick={submitFeedback}>
                             Submit
                         </button>
-                    </div>
+                    
                 </div>
 
                 {/* Feedback Button - Positioned at Bottom Right */}
