@@ -1,0 +1,56 @@
+/* src/FeedbackForm.css */
+
+.feedback-container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(102, 198, 197, 0.3); /* 66c6c5 30% */
+    box-shadow: 5px 5px 10px rgba(11, 11, 11, 0.2), -5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow on left and bottom */
+}
+.feedback-container h3 { 
+    text-align: center;
+  }
+
+hr {
+    border: 1px solid black;
+    margin: 10px 0; /* Adjust margin as needed */
+}
+
+.rating-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.rating-button {
+    background-color: #e7c6ff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rating-button.selected {
+    background-color: #007bff;
+    color:#e7c6ff;
+}
+textarea {
+    width: 95%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e7c6ff
+}
+.submit-button {
+    background-color:rgba(102, 198, 197, 0);
+    color: black;
+    border: 1px solid #5b5959;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: center;
+}
+
