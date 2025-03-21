@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FaHome,FaCommentDots,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
+import { FaMoon, FaSun,FaHome,FaCommentDots,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate,Link} from "react-router-dom";
 import "./HomePage.css";
 import { VscFeedback } from "react-icons/vsc";
 
 
 
-const HomePage = () => {
+const HomePage = ({ darkMode, setDarkMode }) => {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
    // Replace with actual user ID after login
@@ -139,6 +139,10 @@ const updateQuote = (moods) => {
   setQuote(moodQuotes[highestMood] || "Keep going, you're doing great! 🌟");
 };
 
+const toggleDarkMode = () => {
+  setDarkMode((prevMode) => !prevMode);
+};
+
 
 
   return (
@@ -243,6 +247,10 @@ const updateQuote = (moods) => {
       <button className="footer-buttons" onClick={() => navigate("/feedback")}>
           <VscFeedback /> {/* Settings Icon */}
       </button>
+        
+      <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
         
       
 
