@@ -1,7 +1,7 @@
 .meditation-container {
     text-align: center;
     padding: 30px;
-    background-color: #dbeee4;
+    background-color: rgba(102, 198, 197, 0.3);
     border-radius: 10px;
     width: 70%;
     max-width: 800px;
@@ -11,21 +11,26 @@
 }
 
 .timer-display {
-    font-size: 50px;   /* Bigger font */
-    font-weight: bold;
-    background: white;
-    padding: 20px;
-    width: 220px;  /* Ensure equal width */
-    height: 220px; /* Ensure equal height */
-    line-height: 220px; /* Center text vertically */
-    border-radius: 50%;  /* Makes it a perfect circle */
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 15px auto;  /* Center it properly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a slight shadow */
+    
+        font-size: 50px; /* Bigger font */
+        font-weight: bold;
+        background: var(--timer-bg); /* Use a variable for background */
+        color: var(--text-color); /* Adapt text color */
+        padding: 20px;
+        width: 220px; /* Ensure equal width */
+        height: 220px; /* Ensure equal height */
+        line-height: 220px; /* Center text vertically */
+        border-radius: 50%; /* Makes it a perfect circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px auto; /* Center it properly */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a slight shadow */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
      
-}
+
 
 .start-button, .reset-button, .save-button {
     padding: 10px;
@@ -109,4 +114,23 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.meditation-title h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-style: italic;
+    position: relative;
+    padding-bottom: 6px;
+    margin-top: 2px;
+}
+
+.meditation-title h3::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: black;
+    margin: 5px auto;
 }

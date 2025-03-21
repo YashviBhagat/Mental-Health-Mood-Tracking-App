@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { VscFeedback } from "react-icons/vsc";
-import { FaPlus, FaHome, FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
+import { FaPlus, FaHome ,FaTrash,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
 import "./journal.css"; // Ensure CSS file exists
 import axios from "axios";
 
@@ -26,15 +26,29 @@ const Journal = () => {
         }
     };
 
-    /** ✅ Redirect to New Journal Form */
+    /**  Redirect to New Journal Form */
     const handleAddJournal = () => {
         navigate("/new_notes");
     };
 
-    /** ✅ Redirect to Edit Journal Page (Passing Journal Data) */
+    /** Redirect to Edit Journal Page (Passing Journal Data) */
     const handleEditJournal = (journal) => {
         navigate("/new_notes", { state: journal }); // ✅ Pass journal data to NoteForm
     };
+
+    const handleDeleteJournal = async (journalId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this journal?");
+        if (!confirmDelete) return;
+    
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/journals/delete/${journalId}/`);
+            setJournals(journals.filter((journal) => journal.id !== journalId));
+        } catch (error) {
+            console.error("Error deleting journal:", error);
+            alert("Failed to delete the journal. Please try again.");
+        }
+    };
+
 
     return (
         <div className="homepage-container">
@@ -83,21 +97,28 @@ const Journal = () => {
                         </div>
                     ) : (
                         <ul className="notes-list">
-                            {journals.map((journal) => (
-                                <li key={journal.id} className="note-item" onClick={() => handleEditJournal(journal)}>
-                                    <h3>{journal.title}</h3>
-                                    <p>{journal.description}</p>
-                                </li>
-                            ))}
-                        </ul>
+    {journals.map((journal) => (
+        <li key={journal.id} className="note-item">
+            <div onClick={() => handleEditJournal(journal)}>
+                <h3>{journal.title}</h3>
+                <p>{journal.description}</p>
+            </div>
+
+            {/*  Move delete button inside the loop */}
+            <button className="delete-button" onClick={() => handleDeleteJournal(journal.id)}>
+                <FaTrash />
+            </button>
+        </li>
+    ))}
+</ul>
                     )}
                    
-                    {/*  "➕" Button (Fixed at Bottom Center) */}
-                    <button className="add-task-circle" onClick={handleAddJournal}>
-                        <FaPlus />
-                    </button>
-                   
                     
+                   
+                {/* "➕" Add Task Button (Bottom Center) */}
+    <button className="add-task-circle" onClick={handleAddJournal}>
+        <FaPlus />
+    </button>   
                 </div>
             </div>
 

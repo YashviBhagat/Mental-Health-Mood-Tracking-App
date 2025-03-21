@@ -128,7 +128,8 @@ const Meditation = () => {
 
                 {/* Meditation Timer Section */}
                 <div className="meditation-container">
-            <h2>Meditation Timer</h2>
+                    <div className="meditation-title"><h3>Meditation Timer</h3></div>
+            
             <div className="timer-display">{formatTime(time)}</div>
 
             {/* Timer Control Buttons */}
@@ -152,7 +153,7 @@ const Meditation = () => {
 
             {/* Background Music Selection */}
         <div className="music-selection">
-                        <h3>Select Background Music</h3>
+        <div className="meditation-title"><h3>BACKGROUND MUSIC</h3></div>
                         <div className="music-buttons">
                             {soundOptions.map((sound) => (
                                 <button

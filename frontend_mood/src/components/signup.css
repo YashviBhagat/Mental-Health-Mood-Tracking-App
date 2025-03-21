@@ -1,0 +1,245 @@
+🌿 General Styling
+/* body { 
+    background-color: #fdfaf3; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; }
+
+/* 🌟 Signup Container */
+/* .signup-container {
+    display: flex;
+    width: 900px; 
+    max-width: 90vw; 
+    height: auto;
+    background-color: #cce3de;
+    border-radius: 12px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    overflow: hidden;
+}
+
+
+.signup-left {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.signup-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.signup-left h2 {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.signup-right {
+    width: 65%;
+    padding: 10px;
+    text-align: center;
+}
+
+.signup-right h1 {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    color: #6b5b95;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+
+.signup-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+
+.input-group {
+    width: 48%; 
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-style: italic;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    background: transparent;
+    font-size: 12px;
+    outline: none;
+    height: 20px;
+} */
+
+/* 🔹 Additional Fields Section */
+/* .additional-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* 🔘 Input Fields inside Additional Fields */
+/* .additional-fields input,
+.additional-fields textarea {
+    width: 48%;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+    background: transparent;
+} */
+
+/* Textarea Full Width 
+.additional-fields textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+}
+
+/* 🔹 Boxed Sections for Gender, Goals & Moods */
+/* .section-box {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+} */
+
+/* 🔹 Group Styling for Radio & Checkbox */
+/* .radio-group,
+.checkbox-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+} */
+
+/* 🔹 Radio & Checkbox Labels */
+/* .radio-group label,
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 2px;
+    gap: 5px;
+    cursor: pointer;
+} */
+
+/* 🔹 Aligning Inputs */
+/* .radio-group input,
+.checkbox-group input {
+    margin-right: 5px;
+} */
+
+/* 🔘 Signup Button - Centered */
+/* .signup-button {
+    background-color: #d8a7b1;
+    color: black;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    width: 40%;
+    display: block;
+    margin: 8px auto 0;
+}
+
+.signup-button:hover {
+    background-color: #b5838d;
+} */
+
+/*🔘 User Type Selection */
+ .user-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10%;
+}
+
+.user-selection button {
+    width: 120px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fdfaf3;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-selection button:hover {
+    background-color: #d8a7b1;
+} 
+
+/* 🌿 Responsive Design */
+/* @media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        width: 95%;
+        padding: 8px;
+    }
+
+    .signup-left {
+        width: 100%;
+    }
+
+    .signup-right {
+        width: 100%;
+    }
+
+    .input-group,
+    .radio-group,
+    .checkbox-group {
+        width: 100%; 
+    }
+
+    .additional-fields {
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .signup-button {
+        width: 70%;
+    }
+} */

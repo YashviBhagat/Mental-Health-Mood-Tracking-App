@@ -279,9 +279,10 @@ def update_journal(request, journal_id):
 #  Delete a journal entry
 @api_view(['DELETE'])
 def delete_journal(request, journal_id):
+    """Delete a journal entry by ID"""
     try:
         journal = Journal.objects.get(id=journal_id)
         journal.delete()
-        return Response({"message": "Journal deleted successfully!"}, status=200)
+        return Response({"message": "Journal deleted successfully!"}, status=status.HTTP_200_OK)
     except Journal.DoesNotExist:
-        return Response({"error": "Journal not found"}, status=404)
+        return Response({"error": "Journal not found"}, status=status.HTTP_404_NOT_FOUND)

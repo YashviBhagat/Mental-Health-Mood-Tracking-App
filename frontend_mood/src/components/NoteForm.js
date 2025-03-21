@@ -8,7 +8,7 @@ import "./NoteForm.css"; // Ensure CSS file exists
 const NoteForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const existingJournal = location.state || {}; // ✅ Get journal data if editing
+    const existingJournal = location.state || {}; //  Get journal data if editing
 
     const [title, setTitle] = useState(existingJournal.title || "");
     const [description, setDescription] = useState(existingJournal.description || "");
@@ -37,14 +37,14 @@ const NoteForm = () => {
         try {
             let response;
             if (existingJournal.id) {
-                // ✅ If editing, send PUT request
+                //  If editing, send PUT request
                 response = await axios.put(
                     `http://127.0.0.1:8000/api/journals/update/${existingJournal.id}/`,
                     journalData,
                     { headers: { "Content-Type": "application/json" } }
                 );
             } else {
-                // ✅ If creating new, send POST request
+                //  If creating new, send POST request
                 response = await axios.post(
                     "http://127.0.0.1:8000/api/journals/add/",
                     journalData,
@@ -52,11 +52,11 @@ const NoteForm = () => {
                 );
             }
 
-            console.log("✅ Server response:", response.data);
+            console.log(" Server response:", response.data);
             navigate("/journal");
 
         } catch (error) {
-            console.error("🚨 Error saving journal entry:", error);
+            console.error(" Error saving journal entry:", error);
             alert("Failed to save the journal entry. Please try again.");
         }
     };
@@ -86,8 +86,14 @@ const NoteForm = () => {
             {/* Main Content Area */}
             <div className="main-content">
                 <header>
-                    <h1>{existingJournal.id ? "Edit Journal" : "Write Your Thoughts"}</h1>
+                    <h1 >{existingJournal.id ? "Edit Journal" : "Write Your Thoughts"}</h1>
                 </header>
+
+                <button className="exit-button" onClick={handleExit}>
+                        Exit
+                </button>
+    
+
 
                 <form onSubmit={handleSubmit} className="note-form">
                     <input
@@ -98,14 +104,18 @@ const NoteForm = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <textarea
+
                         className="note-form-textarea"
                         placeholder="Write your thoughts here..."
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
+                    <div className="button-container">
                     <button type="submit" className="note-form-button" disabled={!isChanged}>
                         Save
                     </button>
+                    </div>
+                    
                 </form>
             </div>
         </div>

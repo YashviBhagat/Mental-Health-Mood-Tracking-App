@@ -27,8 +27,41 @@
 }
 
 /* ✅ Journal Form Title */
+/* ✅ Title Styling - Smaller Width */
+.note-form-input {
+    width: 60%; /* Reduce width of title field */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: rgba(102, 198, 197, 0.3);
+    color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px; /* Center it */
+}
+
+/* ✅ Make Textarea Width Same as Title */
+.note-form-textarea {
+    width: 60%; /* Same width as title */
+    height: 200px; /* Reduce height */
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 6px;
+    background-color: rgba(102, 198, 197, 0.3);
+    color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ✅ Center the Title */
 .note-form-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Reduce size */
     font-weight: bold;
     text-transform: uppercase;
     font-style: italic;
@@ -36,39 +69,29 @@
     display: inline-block;
     border-bottom: 2px solid black;
     padding-bottom: 5px;
-    margin: 0 auto 20px auto;
+    margin: 10 auto 20px auto;
+    
 }
 
-/* ✅ Input Fields */
-.note-form-input,
-.note-form-textarea {
+/* ✅ Save Button Centered */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+/* ✅ Center Save Button Properly */
+.button-container {
+    position: relative;  /* Change from absolute to relative */
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid black;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    background-color: rgba(102, 198, 197, 0.3);
-    color: black;
-}
-
-.note-form-textarea {
-    height: 300px;
-    width: 700px;
-    resize: none;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-top: 20px; /* Add some spacing above */
 }
 
 /* ✅ Save Button */
-.button-container {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .note-form-button {
     width: 200px;
     padding: 12px;
@@ -88,4 +111,25 @@
 
 .note-form-button:hover:not(:disabled) {
     background-color: #9b6c79;
+}
+
+
+.exit-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #d9534f; /* Red Background */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* ✅ Hover Effect */
+.exit-button:hover {
+    background: #c9302c; /* Darker Red */
 }

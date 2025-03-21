@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../components/signin.css";
-import logo from "../assets/nirvana-logo.png"; // ✅ Import the logo
+import "./signin.css";
+import logo from "../assets/nirvana-logo.png"; 
 
 const Signin = () => {
   const [username, setUsername] = useState("");

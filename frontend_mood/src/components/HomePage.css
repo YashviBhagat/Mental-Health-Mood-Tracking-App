@@ -9,7 +9,7 @@
 /* Sidebar */
 .sidebar {
   width: 200px;
-  background: #ececec;
+  background: #e0d3d3;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
 }
 
 .sidebar ul li a:hover {
-  color: #cc95d1; /* Change color on hover */
+  color: #9c51a3; /* Change color on hover */
 }
 
 /* Main Content */
@@ -121,7 +121,7 @@ header h1 {
 /* Mood Selection */
 .mood-selection {
   grid-row: span 3;
-  background: #d8ebe4;
+  background: rgba(102, 198, 197, 0.3);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -135,7 +135,7 @@ header h1 {
 
 /* Mood Prediction */
 .mood-prediction, .streaks, .quote {
-  background: #d8ebe4;
+  background: rgba(102, 198, 197, 0.3);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -166,7 +166,7 @@ header h1 {
 .quote {
   text-align: center;
   font-style: italic;
-  background: #d8ebe4;
+  background: rgba(102, 198, 197, 0.3);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -209,6 +209,56 @@ header h1 {
 .footer-buttons svg {
   font-size: 30px; /* Increase icon size */
 }
+
+/* Dark Mode Button (Bottom Left Corner) */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background-color: #444;
+}
+
+
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark-mode .sidebar {
+  background-color: #333;
+}
+
+.dark-mode .main-content {
+  background-color: #222;
+}
+
+.dark-mode .header-buttons button {
+  background-color: #555;
+  color: white;
+}
+
+.dark-mode .dark-mode-toggle {
+  background-color: #ddd;
+  color: black;
+}
+
 
 
 

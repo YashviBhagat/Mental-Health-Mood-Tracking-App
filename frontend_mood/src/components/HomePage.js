@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FaHome,FaCommentDots,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
+import { FaMoon, FaSun,FaHome,FaCommentDots,FaCog, FaChartBar, FaBook, FaBell, FaComments, FaUserMd, FaSpa, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate,Link} from "react-router-dom";
 import "./HomePage.css";
 import { VscFeedback } from "react-icons/vsc";
 
 
 
-const HomePage = () => {
+
+const HomePage = ({ darkMode, setDarkMode }) => {
+
+  
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
    // Replace with actual user ID after login
@@ -21,6 +24,7 @@ const HomePage = () => {
     fetchMoodRatings();
     fetchStreaks();
   }, []);
+  
   
   
   
@@ -139,10 +143,15 @@ const updateQuote = (moods) => {
   setQuote(moodQuotes[highestMood] || "Keep going, you're doing great! 🌟");
 };
 
+const toggleDarkMode = () => {
+  setDarkMode((prevMode) => !prevMode);
+};
 
 
   return (
     <div className="homepage-container">
+
+      
   {/* Sidebar */}
   <aside className="sidebar">
     <h2 className="logo">NIRVANA</h2>
@@ -150,7 +159,7 @@ const updateQuote = (moods) => {
       <ul>
         <li><Link to="/"><FaHome /> Homepage</Link></li>
         <li><Link to="/moodanalytics"><FaChartBar /> Mood Analytics</Link></li>
-        <li><Link to="/therapistappoinment"><FaUserMd /> Therapist Appointment</Link></li>
+        <li><Link to="/therapistappointment"><FaUserMd /> Therapist Appointment</Link></li>
         <li><Link to="/meditation"><FaSpa /> Meditation</Link></li>
         <li><Link to="/journal"><FaBook /> Journal</Link></li>
         <li><Link to="/notification"><FaBell /> Notifications</Link></li>
@@ -243,6 +252,10 @@ const updateQuote = (moods) => {
       <button className="footer-buttons" onClick={() => navigate("/feedback")}>
           <VscFeedback /> {/* Settings Icon */}
       </button>
+
+      <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
         
       
 
