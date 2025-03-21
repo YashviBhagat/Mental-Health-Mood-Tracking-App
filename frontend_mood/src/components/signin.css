@@ -1,42 +1,135 @@
-/* #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
+/*  General Styling */
+.signin-body {
+  background-color: #faf1dd;  /* Light cream background */
   
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+  margin: 0;
+}
+
+/*  Sign-In Container */
+.signin-container {
+  display: flex;
+  width: 900px;
+  height: 600px;
+  background-color: #cce3de; /* Soft pastel green */
+  border-radius: 12px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); /* Depth effect */
+  overflow: hidden; /* Prevents layout breaking */
+}
+
+/* 📌 Left Section (Logo & Tagline) */
+/* .signin-left {
+  width: 40%;
+  background-color: #faf1dd; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+} */
+
+.signin-logo {
+  width: 320px;
+  height: 320px;
+  margin-bottom: 5px;
+  align-items: center;
+  margin-top:60px;
+}
+
+.signin-left h2 {
+  font-size: 13px;
+  font-style: italic;
+  font-weight: bold;
+  color: #333;
   
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
   
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
-  } */
+}
+
+/*  Right Section (Sign-In Form) */
+.signin-right {
+  width: 60%;
+  padding: 40px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.signin-right h1 {
+  font-size: 22px;
+  font-weight: bold;
+  font-style: italic;
+  color: #6b5b95; /* Soft purple */
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* 🔘 Input Fields */
+.input-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-weight: bold;
+  font-style: italic;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid black; /* Underline effect */
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+}
+
+/* ⚠️ Error Message */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* 🔗 Extra Links (Forgot Password & Signup) */
+.extra-links {
+  display: flex;
+  /* justify-content: space-between; */
+  font-size: 15px;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.extra-links a {
+  color: #d2691e; /* Warm brown */
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+/* 🔘 Sign-in Button */
+.signin-button {
+  background-color: #d8a7b1; /* Soft pink */
+  color: black;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  width: 30%;
+  margin-bottom: 5%;
+}
+
+.signin-button:hover {
+  background-color: #b5838d; /* Darker pink on hover */
+}

@@ -32,7 +32,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="signin-container">
+    <div className="signin-container signin-body">
       {/* Left Section - Logo & Tagline */}
       <div className="signin-left">
         <img src={logo} alt="Nirvana Logo" className="signin-logo" />
